@@ -1,0 +1,10 @@
+gen/
+libnccl.so
+model_best.t7
+checkpoints
+
+*.eps
+*.t7
+results/
+log
+*.log
