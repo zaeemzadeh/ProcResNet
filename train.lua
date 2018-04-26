@@ -54,6 +54,22 @@ function Trainer:train(epoch, dataloader)
 
       -- Copy input and target to the GPU
       self:copyInputs(sample)
+      
+      --ZCA Projection
+      num_modules = #self.model:parameters()
+      lin_module = self.model:parameters()[num_modules-1]
+      status,u,s,v = pcall(torch.svd,lin_module:t())
+      --u, s, v = torch.svd(lin_module:t())
+      if status then
+        w_updated = (u * v:t()):t()
+        --w_updated = torch.zeros(10,256):cuda()
+        x = self.model:parameters()[num_modules-1]
+        x:copy(w_updated)
+        --u, s, v = torch.svd(x:t())
+        --print(torch.min(s),torch.max(s))
+      else
+        print('error in svd occured')
+      end
 
       local output = self.model:forward(self.input):float()
       local batchSize = output:size(1)
@@ -63,19 +79,9 @@ function Trainer:train(epoch, dataloader)
       self.criterion:backward(self.model.output, self.target)
       self.model:backward(self.input, self.criterion.gradInput)
 
+      
       optim.sgd(feval, self.params, self.optimState)
       
-     --print(self.model:get(1):get(1).gradWeight)
-      
-      --ZCA Projection
-      num_modules = #self.model:parameters()
-      lin_module = self.model:parameters()[num_modules-1]
-      u, s, v = torch.svd(lin_module:t())
-      w_updated = (u * v:t()):t()
-      --w_updated = torch.zeros(10,256):cuda()
-      x = self.model:parameters()[num_modules-1]
-      x:copy(w_updated)
-
       local top1, top5 = self:computeScore(output, sample.target, 1)
       top1Sum = top1Sum + top1*batchSize
       top5Sum = top5Sum + top5*batchSize
@@ -193,9 +199,9 @@ function Trainer:learningRate(epoch)
    if self.opt.dataset == 'imagenet' then
       decay = math.floor((epoch - 1) / 30)
    elseif self.opt.dataset == 'cifar10' then
-      decay = epoch >= 300 and 2 or epoch >= 300 and 1 or 0
+      decay = epoch >= 225 and 2 or epoch >= 150 and 1 or 0
    elseif self.opt.dataset == 'cifar100' then
-      decay = epoch >= 300 and 2 or epoch >= 300 and 1 or 0
+      decay = epoch >= 225 and 2 or epoch >= 150 and 1 or 0
    end
    return self.opt.LR * math.pow(0.1, decay)
 end

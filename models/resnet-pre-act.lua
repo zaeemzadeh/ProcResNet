@@ -120,6 +120,31 @@ local function createModel(opt)
       model:add(Avg(8, 8, 1, 1))
       model:add(nn.View(nStages[4]):setNumInputDims(3))
       model:add(nn.Linear(nStages[4], 10))
+   elseif opt.dataset == 'cifar100' then
+      -- Model type specifies number of layers for CIFAR-10 model
+      assert((depth - 2) % 9 == 0, 'depth should be 9n+2 (e.g., 164 or 1001 in the paper)')
+      local n = (depth - 2) / 9
+      print(' | ResNet-' .. depth .. ' CIFAR-100')
+
+      -- The new ResNet-164 and ResNet-1001 in [a]
+	  local nStages = {16, 64, 128, 256}
+
+      model:add(Convolution(3,nStages[1],3,3,1,1,1,1)) -- one conv at the beginning (spatial size: 32x32)
+      model:add(padding())
+      model:add(padding())
+      model:add(layer(bottleneck, nStages[2], nStages[2], n, 1)) -- Stage 1 (spatial size: 32x32)
+     model:add(L2Pooling2d(2,2))      
+      model:add(padding())
+      model:add(layer(bottleneck, nStages[3], nStages[3], n, 1)) -- Stage 2 (spatial size: 16x16)
+     model:add(L2Pooling2d(2,2))
+      model:add(padding())
+      model:add(layer(bottleneck, nStages[4], nStages[4], n, 1)) -- Stage 3 (spatial size: 8x8)
+      model:add(SBatchNorm(nStages[4]))
+      model:add(ReLU(true))
+      --model:add(Avg(8, 8, 1, 1))      
+      model:add(L2Pooling2d(8,1))
+      model:add(nn.View(nStages[4]):setNumInputDims(3))
+      model:add(nn.Linear(nStages[4], 100))
    else
       error('invalid dataset: ' .. opt.dataset)
    end
