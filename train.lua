@@ -63,6 +63,8 @@ function Trainer:train(epoch, dataloader)
       self.criterion:backward(self.model.output, self.target)
       self.model:backward(self.input, self.criterion.gradInput)
       
+      optim.sgd(feval, self.params, self.optimState)
+      
       --ZCA Projection
       num_modules = #self.model:parameters()
       lin_module = self.model:parameters()[num_modules-1]
@@ -78,8 +80,6 @@ function Trainer:train(epoch, dataloader)
       else
         print('error in svd occured')
       end
-      
-      optim.sgd(feval, self.params, self.optimState)
       
       local top1, top5 = self:computeScore(output, sample.target, 1)
       top1Sum = top1Sum + top1*batchSize
