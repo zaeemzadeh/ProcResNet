@@ -55,18 +55,7 @@ function Trainer:train(epoch, dataloader)
       -- Copy input and target to the GPU
       
       self:copyInputs(sample)
-     
-
-      local output = self.model:forward(self.input):float()
-      local batchSize = output:size(1)
-      local loss = self.criterion:forward(self.model.output, self.target)
-
-      self.model:zeroGradParameters()
-      self.criterion:backward(self.model.output, self.target)
-      self.model:backward(self.input, self.criterion.gradInput)
-      
-      optim.sgd(feval, self.params, self.optimState)
-      --ZCA Projection
+     --ZCA Projection
       num_modules = #self.model:parameters()
       lin_module = self.model:parameters()[num_modules-1]
       status,u,s,v = pcall(torch.svd,lin_module:t())
@@ -81,6 +70,17 @@ function Trainer:train(epoch, dataloader)
       else
         print('error in svd occured')
       end
+
+      local output = self.model:forward(self.input):float()
+      local batchSize = output:size(1)
+      local loss = self.criterion:forward(self.model.output, self.target)
+
+      self.model:zeroGradParameters()
+      self.criterion:backward(self.model.output, self.target)
+      self.model:backward(self.input, self.criterion.gradInput)
+      
+      optim.sgd(feval, self.params, self.optimState)
+      
       
       local top1, top5 = self:computeScore(output, sample.target, 1)
       top1Sum = top1Sum + top1*batchSize
