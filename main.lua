@@ -53,7 +53,6 @@ local errLogger = optim.Logger('error.log')
 errLogger:display(false)
 trainTop1vec = torch.Tensor(opt.nEpochs,1):zero()
 testTop1vec  = torch.Tensor(opt.nEpochs,1):zero()
---trainLossvec = torch.Tensor(opt.nEpochs,1):zero()
 
 for epoch = startEpoch, opt.nEpochs do
    -- Train for a single epoch
@@ -75,14 +74,6 @@ for epoch = startEpoch, opt.nEpochs do
    -- plot logger
     trainTop1vec[epoch] = trainTop1
     testTop1vec[epoch]  = testTop1
-    --trainLossvec[epoch] = trainLoss
-    
-    --gnuplot.figure(1)
-    --gnuplot.plot({'Training Error', trainTop1vec:sub(1,epoch), '-'},
-             --     {'Testing Error', testTop1vec:sub(1,epoch), '-'}) 
-    --gnuplot.plot('Training Loss', trainLossvec:sub(1,epoch), '.')
-    --gnuplot.axis({1,300,0,20})
-    --gnuplot.epsfigure('error.eps')
     
    errLogger:style{['% train top1']    = '-', ['% test top1']    = '-'}
    errLogger:plot()

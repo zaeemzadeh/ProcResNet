@@ -59,14 +59,10 @@ function Trainer:train(epoch, dataloader)
       num_modules = #self.model:parameters()
       lin_module = self.model:parameters()[num_modules-1]
       status,u,s,v = pcall(torch.svd,lin_module:t())
-      --u, s, v = torch.svd(lin_module:t())
       if status then
         w_updated = (u * v:t()):t()
-        --w_updated = torch.zeros(10,256):cuda()
         x = self.model:parameters()[num_modules-1]
         x:copy(w_updated)
-        --u, s, v = torch.svd(x:t())
-        --print(torch.min(s),torch.max(s))
       else
         print('error in svd occured')
       end

@@ -31,15 +31,15 @@ cd cudnn.torch; luarocks make
 
 # Install Magma
 
-* http://jinjiren.github.io/blog/gpu-math-using-torch-and-magma/
+* installation instructions: http://jinjiren.github.io/blog/gpu-math-using-torch-and-magma/
 
-* make.inc.openblas
+* use this make.inc file: make.inc.openblas
 
-* dpkg -L libopenblas-base
+* find openblas directory with ```dpkg -L libopenblas-base```
 
-* add export OPENBLASDIR=/usr/lib and export CUDADIR=/usr/local/cuda to ~/.bashrc
+* add openblas directory to env variables. example: add export OPENBLASDIR=/usr/lib and export CUDADIR=/usr/local/cuda to ~/.bashrc
 
-* source ~./bashrc
+* update env variables ```source ~./bashrc```
 
-* make (if error, run fix_magma first)
+* run ```make``` (if compilation fails => run fix_magma)
 

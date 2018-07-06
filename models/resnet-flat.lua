@@ -200,6 +200,7 @@ local function createModel(opt)
       v.bias:zero()
    end
    model:cuda()
+   --print(model)
 
    if opt.cudnn == 'deterministic' then
       model:apply(function(m)
