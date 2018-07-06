@@ -8,6 +8,7 @@ To train the network:
  ```th main.lua -netType resnet-flat -depth 164 -batchSize 128 -nGPU 1 -nThreads 4 -dataset cifar10 -nEpochs 300 -shareGradInput false -optnet true |& tee log```
 
 
+# Requirements
 
 ## Install Torch
 1. Install the Torch dependencies:
@@ -34,7 +35,7 @@ cd cudnn.torch; luarocks make
 * Install cudnn v5
 
 
-# Install Magma
+## Install Magma
 
 * installation instructions: http://jinjiren.github.io/blog/gpu-math-using-torch-and-magma/
 
