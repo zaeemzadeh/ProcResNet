@@ -2,7 +2,7 @@ Code for results in paper:
 
 Zaeemzadeh, Alireza, Nazanin Rahnavard, and Mubarak Shah. "Norm-Preservation: Why Residual Networks Can Become Extremely Deep?." https://arxiv.org/abs/1805.07477
 
-The code is mainly based on the code in https://github.com/KaimingHe/resnet-1k-layers
+The code is mainly based on the code in https://github.com/KaimingHe/resnet-1k-layers and https://github.com/facebook/fb.resnet.torch
 
 To train the network:
 
