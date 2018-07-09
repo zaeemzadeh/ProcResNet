@@ -122,7 +122,7 @@ local function createModel(opt)
       -- Model type specifies number of layers for CIFAR-10 model
       assert((depth - 2) % 9 == 0, 'depth should be 9n+2 (e.g., 164 or 1001 in the paper)')
       local n = (depth - 2) / 9
-      print(' | ResNet-' .. depth .. ' CIFAR-10')
+      print(' | ProcResNet-' .. depth .. ' CIFAR-10')
 
       -- The new ResNet-164 and ResNet-1001 in [a]
 	  local nStages = {16, 64, 128, 256}
@@ -147,7 +147,7 @@ local function createModel(opt)
       -- Model type specifies number of layers for CIFAR-10 model
       assert((depth - 2) % 9 == 0, 'depth should be 9n+2 (e.g., 164 or 1001 in the paper)')
       local n = (depth - 2) / 9
-      print(' | ResNet-' .. depth .. ' CIFAR-100')
+      print(' | ProcResNet-' .. depth .. ' CIFAR-100')
 
       -- The new ResNet-164 and ResNet-1001 in [a]
 	  local nStages = {16, 64, 128, 256}
