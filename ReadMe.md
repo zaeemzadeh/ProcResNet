@@ -6,7 +6,7 @@ The code is mainly based on the code in https://github.com/KaimingHe/resnet-1k-l
 
 To train the network:
 
- ```th main.lua -netType procresnet -depth 164 -batchSize 128 -nGPU 1 -nThreads 4 -dataset cifar10 -nEpochs 300 -shareGradInput false -optnet true |& tee log```
+ ```th main.lua -netType procresnet -depth 164 -batchSize 128 -nGPU 2 -nThreads 4 -dataset cifar10 -nEpochs 300 -shareGradInput false -LR 0.1 -optnet true |& tee log```
 
 
 # Requirements
