@@ -24,7 +24,7 @@ python train.py --model_file 'models/procresnet.py' --model_name 'ProcResNet166'
 
 ## About data augmentation
 
-It performs various data augmentation using [ChainerCV](https://github.com/chainer/chainercv). 
+The code performs random flip and random crop using [ChainerCV](https://github.com/chainer/chainercv). 
 
 See the details at `transform` function in `train.py`.
 
