@@ -35,7 +35,7 @@ Gradient norm ratio for ResNet (top) and ProcResNet (bottom):
 
 <img src="https://github.com/zaeemzadeh/ProcResNet/blob/master/imgs/animated.gif" width="480">
 
-## Exprimental Results
+## Exprimental Results on CIFAR10
 
 | model_name   |   depth |  #params|   error (%)         |
 |:-------------|--------:|--------:|--------------------:|
