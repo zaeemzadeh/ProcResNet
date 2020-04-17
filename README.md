@@ -33,7 +33,7 @@ See the details at `regularize_convs` function in `models/procresnet.py`.
 
 Gradient norm ratio for ResNet (top) and ProcResNet (bottom):
 
-![Gradient norm ratio for ResNet (top) and ProcResNet (bottom)](imgs/animated.gif | width=400)
+![Gradient norm ratio for ResNet (top) and ProcResNet (bottom)](imgs/animated.gif){: width="50%"}
 
 ## Exprimental Results
 
