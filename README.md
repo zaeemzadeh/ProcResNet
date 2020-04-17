@@ -20,6 +20,8 @@ Tested on:
 python train.py --model_file 'models/procresnet.py' --model_name 'ProcResNet166' --regul_freq 0.5 --gpus 0 1 --batchsize 128 --training_epoch 300 --lr_decay_epoch 150 225 --initial_lr 0.1 --dataset 'cifar10'
 ```
 
+'regul_freq' is a number in range [0, 1] and determines how often the regularization is performed.
+
 ## About data augmentation
 
 It performs various data augmentation using [ChainerCV](https://github.com/chainer/chainercv). 
