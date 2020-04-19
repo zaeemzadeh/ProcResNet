@@ -2,7 +2,9 @@
 Implementation of Procrustes ResNet (ProcResNet) proposed in: 
 
 Zaeemzadeh, Alireza, Nazanin Rahnavard, and Mubarak Shah. 
-"Norm-Preservation: Why Residual Networks Can Become Extremely Deep?." [link](https://arxiv.org/abs/1805.07477)
+"Norm-Preservation: Why Residual Networks Can Become Extremely Deep?." 
+IEEE Transactions on Pattern Analysis and Machine Intelligence (PAMI) 2020 
+[link](https://arxiv.org/abs/1805.07477)
 
 
 ## Requirements
@@ -53,9 +55,10 @@ If you find this work useful, please use the following BibTeX entry.
 @article{zaeemzadeh2018norm,
   title={Norm-Preservation: Why Residual Networks Can Become Extremely Deep?},
   author={Zaeemzadeh, Alireza and Rahnavard, Nazanin and Shah, Mubarak},
-  journal={arXiv preprint arXiv:1805.07477},
-  year={2018}
+  journal = {Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  year = {2020}
 }
+
 ```
 
 
