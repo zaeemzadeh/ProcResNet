@@ -2,7 +2,9 @@
 Implementation of Procrustes ResNet (ProcResNet) proposed in: 
 
 Zaeemzadeh, Alireza, Nazanin Rahnavard, and Mubarak Shah. 
-"Norm-Preservation: Why Residual Networks Can Become Extremely Deep?." [link](https://arxiv.org/abs/1805.07477)
+"Norm-Preservation: Why Residual Networks Can Become Extremely Deep?." 
+IEEE Transactions on Pattern Analysis and Machine Intelligence (PAMI) 2020 
+[link](https://ieeexplore.ieee.org/abstract/document/9079218)
 
 - **Note:** For a PyTorch implementations, see [here](https://github.com/zaeemzadeh/ProcResNet_PyTorch).
 
@@ -21,9 +23,11 @@ Tested on:
 python train.py --model_file 'models/procresnet.py' --model_name 'ProcResNet166' --regul_freq 0.5 --gpus 0 1 --batchsize 128 --training_epoch 300 --lr_decay_epoch 150 225 --initial_lr 0.1 --dataset 'cifar10'
 ```
 
+'regul_freq' is a number in range [0, 1] and determines how often the regularization is performed.
+
 ## About data augmentation
 
-It performs various data augmentation using [ChainerCV](https://github.com/chainer/chainercv). 
+The code performs random flip and random crop using [ChainerCV](https://github.com/chainer/chainercv). 
 
 See the details at `transform` function in `train.py`.
 
@@ -52,9 +56,10 @@ If you find this work useful, please use the following BibTeX entry.
 @article{zaeemzadeh2018norm,
   title={Norm-Preservation: Why Residual Networks Can Become Extremely Deep?},
   author={Zaeemzadeh, Alireza and Rahnavard, Nazanin and Shah, Mubarak},
-  journal={arXiv preprint arXiv:1805.07477},
-  year={2018}
+  journal = {Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  year = {2020}
 }
+
 ```
 
 
