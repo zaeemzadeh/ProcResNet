@@ -4,6 +4,7 @@ Implementation of Procrustes ResNet (ProcResNet) proposed in:
 Zaeemzadeh, Alireza, Nazanin Rahnavard, and Mubarak Shah. 
 "Norm-Preservation: Why Residual Networks Can Become Extremely Deep?." [link](https://arxiv.org/abs/1805.07477)
 
+- **Note:** For a PyTorch implementations, see [here](https://github.com/zaeemzadeh/ProcResNet_PyTorch).
 
 ## Requirements
 
